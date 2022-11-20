@@ -389,11 +389,16 @@
 <div
     class="relative flex items-top justify-center min-h-screen bg-dark-900 sm:items-center py-4 sm:pt-0" style="background-color: darkcyan">
     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-        @auth
+
+        @if(\Illuminate\Support\Facades\Auth::check())
             <a href="{{ route('home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #e2e8f0">Home</a>
+            <h4 class="dark:text-white">Hello: {{auth()->user()['name']}} !</h4>
+            <a href="{{route('logout')}}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #edf2f7">logout</a>
         @else
             <a href="http://localhost:8000/login" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #e2e8f0">Log in</a>
-            <a href="http://localhost:8000/register?survey-hr=sGFdsivu221hgg"
+{{--            <a href="http://localhost:8000/register?survey-hr=sGFdsivu221hgg"--}}
+{{--               class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color: #e2e8f0">Register</a>--}}
+            <a href="http://ngoccp.test:8000/register?survey-hr=sGFdsivu221hgg"
                class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color: #e2e8f0">Register</a>
         @endauth
     </div>
