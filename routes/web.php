@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('', [\App\Http\Controllers\AuthController::class, 'home'])->name('home');
-Route::get('register', [\App\Http\Controllers\AuthController::class, 'register'])->name('register');
-Route::get('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+Route::group(['domain' => env('APP_URL')], function (){
+    Route::get('', [\App\Http\Controllers\AuthController::class, 'home'])->name('home');
+    Route::get('register', [\App\Http\Controllers\AuthController::class, 'register'])->name('register');
+    Route::get('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+    Route::get('info', [\App\Http\Controllers\AuthController::class, 'info'])->name('info')->middleware('auth');
+});
+

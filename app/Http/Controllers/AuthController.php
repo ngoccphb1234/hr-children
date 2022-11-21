@@ -16,17 +16,17 @@ class AuthController extends Controller
     {
         $user_email = $request->query('user_email');
         if ($user_email) {
-
             $redis = Redis::connection();
-            //co nen truyen query string ko, hay goi api get roi truyen vao header
             $user_redis = $redis->get($user_email);
             if ($user_redis){
                 $decode_user = json_decode($user_redis);
                 $user = User::query()->where('email', '=', $decode_user->email)->first();
                 if (!$user){
-                    throw new \Exception('user not found!');
+                   $new_user = User::query()->create((array)$decode_user);
+                    Auth::loginUsingId($new_user->id);
+                }else{
+                    Auth::loginUsingId($user->id);
                 }
-                Auth::login($user);
             }
         }
         return view('home');
@@ -37,7 +37,13 @@ class AuthController extends Controller
         return view('register');
     }
 
-    public function logout()
+    public function info()
+    {
+        return view('info');
+    }
+
+
+    public function logout(Request $request)
     {
         Session::flush();
         Auth::logout();

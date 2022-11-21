@@ -21,5 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth.app')->group(function (){
     Route::post('register', [\App\Http\Controllers\Api\AuthenticationController::class, 'register']);
 });
+Route::post('logout', [\App\Http\Controllers\Api\AuthenticationController::class, 'logout'])->name('logoutApi');
+
 
 
