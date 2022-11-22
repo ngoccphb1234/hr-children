@@ -14,13 +14,13 @@ class AuthController extends Controller
 
     public function home(Request $request)
     {
-        $user_email = $request->query('user_email');
-        if ($user_email) {
+        $user_code = $request->query('user_code');
+        if ($user_code) {
             $redis = Redis::connection();
-            $user_redis = $redis->get($user_email);
+            $user_redis = $redis->get($user_code);
             if ($user_redis){
                 $decode_user = json_decode($user_redis);
-                $user = User::query()->where('email', '=', $decode_user->email)->first();
+                $user = User::query()->where('user_code', '=', $decode_user->user_code)->first();
                 if (!$user){
                    $new_user = User::query()->create((array)$decode_user);
                     Auth::loginUsingId($new_user->id);

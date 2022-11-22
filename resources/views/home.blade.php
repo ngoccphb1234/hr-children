@@ -392,18 +392,16 @@
         <a href="{{ route('home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #e2e8f0">Home</a>
 
         @if(\Illuminate\Support\Facades\Auth::check())
-            <h4 class="dark:text-white">Hello: {{auth()->user()['name']}} !</h4>
+            <h4 class="dark:text-white" style="color: chartreuse">Hello: {{auth()->user()['name']}} !</h4>
             <a href="{{route('info')}}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #edf2f7">info</a>
-            <form method="POST" action="{{ route('logoutApi') }}">
-                @csrf
-                <button type="submit" value="submit">Logout</button>
-            </form>
-{{--            <a href="{{route('logoutApi')}}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #edf2f7">logout</a>--}}
+            <br>
+            <a href="{{route('logout')}}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #edf2f7">logout</a>
+            <br>
         @else
-            <a href="http://localhost:8000/login?survey-hr=sGFdsivu221hgg" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #e2e8f0">Log in</a>
+            <a href="http://localhost:8000/login?app_key=123456&app_secret=asfdsfetet44" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #e2e8f0">Log in</a>
 {{--            <a href="http://localhost:8000/register?survey-hr=sGFdsivu221hgg"--}}
 {{--               class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color: #e2e8f0">Register</a>--}}
-            <a href="http://localhost:8000/register?survey-hr=sGFdsivu221hgg"
+            <a href="http://localhost:8000/register?app_key=123456&app_secret=asfdsfetet44"
                class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color: #e2e8f0">Register</a>
         @endauth
     </div>

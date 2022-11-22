@@ -18,6 +18,7 @@ class AuthenticationController extends Controller
             $request->validate([
                 'name' => 'required',
                 'email' => 'required|email|unique:users',
+                'user_code' => 'required|unique:users',
                 'password' => 'required|min:6',
             ]);
             $data = $request->all();
