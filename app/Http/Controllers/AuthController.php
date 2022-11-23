@@ -32,11 +32,6 @@ class AuthController extends Controller
         return view('home');
     }
 
-    public function register()
-    {
-        return view('register');
-    }
-
     public function info()
     {
         return view('info');

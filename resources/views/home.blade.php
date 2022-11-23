@@ -401,9 +401,7 @@
             <a href="http://localhost:8000/login?app_key=123456&app_secret=asfdsfetet44" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #e2e8f0">Log in</a>
 {{--            <a href="http://localhost:8000/register?survey-hr=sGFdsivu221hgg"--}}
 {{--               class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color: #e2e8f0">Register</a>--}}
-            <a href="http://localhost:8000/register?app_key=123456&app_secret=asfdsfetet44"
-               class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color: #e2e8f0">Register</a>
-        @endauth
+                    @endauth
     </div>
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
