@@ -62,10 +62,7 @@ class AuthController extends Controller
             throw new \Exception('Co loi khi goi api hrpro');
         }
         $access_token = $response->json()['access_token'];
-
-        $response_user = Http::withHeaders([
-            'X-XSRF-TOKEN' => csrf_token()
-        ])->acceptJson()->asForm()->post($url_hrpro . 'oauth/user', [
+        $response_user = Http::acceptJson()->post($url_hrpro . 'oauth/user', [
             'access_token' => $access_token,
         ]);
         dd($response_user->json());
