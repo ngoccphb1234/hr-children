@@ -22,6 +22,7 @@ Route::middleware('auth.app')->group(function (){
     Route::post('register', [\App\Http\Controllers\Api\AuthenticationController::class, 'register']);
 });
 Route::post('logout', [\App\Http\Controllers\Api\AuthenticationController::class, 'logout'])->name('logoutApi');
+Route::post('auth-by-hrpro', [\App\Http\Controllers\Api\AuthenticationController::class, 'authByHrpro']);
 
 
 

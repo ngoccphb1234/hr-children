@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
+    private string $app_code = '12345678';
+    private string $app_secret = 'fdgkijirreijretrete';
+    private string $key_surveyhr = 'dhughdfugdghfugdhfgh';
 
     public function home(Request $request)
     {
@@ -65,8 +68,43 @@ class AuthController extends Controller
         $response_user = Http::acceptJson()->post($url_hrpro . 'oauth/user', [
             'access_token' => $access_token,
         ]);
-        dd($response_user->json());
+        dd('get usser');
 
+    }
+
+    public function authCheck(Request $request){
+            $app_code = $request->get('app_code');
+            if (!$app_code || strcmp($this->app_code, $app_code) != 0){
+                return Redirect::to('http://hrpro.local:8000');
+            }
+        return Redirect::to('http://hrpro.local:8000/auth/callback/?app_secret='.$this->app_secret);
+    }
+
+    public function loginByHRPRO(Request $request){
+        try {
+            $get_app_code = $request->get('app_code');
+            $get_app_secret = $request->get('app_secret');
+            $get_key_surveyhr = $request->get('key_surveyhr');
+            $get_user_id = $request->get('user_id');
+            return response()->json(1);
+
+            if (!$get_app_code || !$get_app_secret || !$get_key_surveyhr || !$get_user_id){
+                throw new \Exception('ko co key');
+            }
+            if (strcmp($this->app_code, $get_app_code) != 0 || strcmp($this->app_secret, $get_app_secret) != 0 || strcmp($this->key_surveyhr, $get_key_surveyhr) != 0){
+                throw new \Exception('key khong dung');
+            }
+
+            $user = User::query()->where('id_hrpro', '=', $get_user_id)->first();
+            if (!$user){
+                throw new \Exception('ko co user');
+            }
+            Auth::loginUsingId($user->id);
+            return response()->json('success');
+        }catch (\Exception $e){
+            throw new \Exception($e);
+
+        }
     }
 
 }

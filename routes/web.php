@@ -19,5 +19,7 @@ Route::group([], function (){
     Route::get('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
     Route::get('callback', [\App\Http\Controllers\AuthController::class, 'callback'])->name('callback');
     Route::get('info', [\App\Http\Controllers\AuthController::class, 'info'])->name('info')->middleware('auth');
+    Route::get('checkauth', [\App\Http\Controllers\AuthController::class, 'authCheck'])->name('authCheck');
+    Route::post('login-by-hrpro', [\App\Http\Controllers\AuthController::class, 'loginByHRPRO'])->name('loginByHRPRO');
 });
 

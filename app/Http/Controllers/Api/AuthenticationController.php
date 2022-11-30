@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Session;
 
 class AuthenticationController extends Controller
 {
+    private string $app_code = '12345678';
+    private string $app_secret = 'fdgkijirreijretrete';
+    private string $key_surveyhr = 'dhughdfugdghfugdhfgh';
 
     public function register(Request $request){
 
@@ -40,6 +43,24 @@ class AuthenticationController extends Controller
         }
 
 
+    }
+
+    public function authByHrpro(Request $request){
+        try {
+            $get_app_code = $request->get('app_code');
+            $get_app_secret = $request->get('app_secret');
+
+            if (!$get_app_code || !$get_app_secret){
+                throw new \Exception('ko co key');
+            }
+
+            if (strcmp($this->app_code, $get_app_code) != 0 || strcmp($this->app_secret, $get_app_secret) != 0){
+                throw new \Exception('key khong dung');
+            }
+            return response()->json(true);
+        }catch (\Exception $e){
+            return response()->json($e);
+        }
     }
 
 
