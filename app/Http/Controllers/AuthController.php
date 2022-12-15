@@ -18,16 +18,8 @@ class AuthController extends Controller
     private string $app_secret = 'secret_123456';
     private string $url_hrpro = 'http://hrpro.local:8000/';
 
-    public function home(Request $request)
+    public function home()
     {
-//        $user_code = $request->query('user_code');
-//        if ($user_code) {
-//            $user = User::query()->where('user_code', '=', $user_code)->first();
-//
-//            if ($user) {
-//                Auth::login($user);
-//            }
-//        }
         return view('home');
     }
 
@@ -80,42 +72,5 @@ class AuthController extends Controller
     public function callbackURL(){
         return \redirect()->to('http://hrpro.local:8000/oauth/authorize?app_key=key_123456');
     }
-
-
-//
-//    public function authCheck(Request $request){
-//            $app_code = $request->get('app_code');
-//            if (!$app_code || strcmp($this->app_code, $app_code) != 0){
-//                return Redirect::to('http://hrpro.local:8000');
-//            }
-//        return Redirect::to('http://hrpro.local:8000/auth/callback/?app_secret='.$this->app_secret);
-//    }
-//
-//    public function loginByHRPRO(Request $request){
-//        try {
-//            $get_app_code = $request->get('app_code');
-//            $get_app_secret = $request->get('app_secret');
-//            $get_key_surveyhr = $request->get('key_surveyhr');
-//            $get_user_id = $request->get('user_id');
-//            return response()->json(1);
-//
-//            if (!$get_app_code || !$get_app_secret || !$get_key_surveyhr || !$get_user_id){
-//                throw new \Exception('ko co key');
-//            }
-//            if (strcmp($this->app_code, $get_app_code) != 0 || strcmp($this->app_secret, $get_app_secret) != 0 || strcmp($this->key_surveyhr, $get_key_surveyhr) != 0){
-//                throw new \Exception('key khong dung');
-//            }
-//
-//            $user = User::query()->where('id_hrpro', '=', $get_user_id)->first();
-//            if (!$user){
-//                throw new \Exception('ko co user');
-//            }
-//            Auth::loginUsingId($user->id);
-//            return response()->json('success');
-//        }catch (\Exception $e){
-//            throw new \Exception($e);
-//
-//        }
-//    }
 
 }
