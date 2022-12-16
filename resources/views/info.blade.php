@@ -14,13 +14,13 @@
     <div class="col-3">
     </div>
     <div class="col-6">
-        <a href="{{route('home')}}">Home</a>
+        <a href="{{route('home')}}">Homeaa</a>
     @if(\Illuminate\Support\Facades\Auth::check())
             <h2>Id: {{auth()->user()['id']}}</h2>
             <h2>Name: {{auth()->user()['name']}}</h2>
             <h2>Email: {{auth()->user()['email']}}</h2>
         @else
-            <h1>Unauthorized!</h1>
+            <h1>Unauthorized!!!</h1>
         @endif
     </div>
     <div class="col-3"></div>
