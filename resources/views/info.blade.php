@@ -23,7 +23,9 @@
             <h1>Unauthorized!</h1>
         @endif
     </div>
-    <div class="col-3"></div>
+    <div class="col-3">
+        <p>hello</p>
+    </div>
 </div>
 </body>
 </html>
